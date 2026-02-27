@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
 import BumblebeeGuide from "@/components/BumblebeeGuide";
 import { motion } from "framer-motion";
@@ -19,12 +21,6 @@ const featureCards = [
     title: "AI Community Agent",
     description: "Robot manages your community 24/7",
   },
-];
-
-const stats = [
-  { value: "1,200", label: "Tokens Launched" },
-  { value: "$4.2M", label: "Protected" },
-  { value: "0", label: "Rug Pulls" },
 ];
 
 // Floating hex particles
@@ -89,6 +85,39 @@ const CircuitLine = ({ d, delay }: { d: string; delay: number }) => (
 );
 
 const Index = () => {
+  const [stats, setStats] = useState([
+    { value: "0", label: "Tokens Launched" },
+    { value: "0", label: "Holders" },
+    { value: "0", label: "Rug Pulls" },
+  ]);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001'}/api/tokens`
+        );
+        if (response.data.success && response.data.tokens) {
+          const tokens = response.data.tokens;
+          const totalTokens = tokens.length;
+          const totalHolders = tokens.reduce((sum: number, token: any) => sum + (token.holders || 0), 0);
+          
+          setStats([
+            { value: totalTokens.toString(), label: "Tokens Launched" },
+            { value: totalHolders.toString(), label: "Holders" },
+            { value: "0", label: "Rug Pulls" },
+          ]);
+        }
+      } catch (err) {
+        console.error("Error fetching stats:", err);
+      }
+    };
+
+    fetchStats();
+    const interval = setInterval(fetchStats, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="flex flex-col overflow-hidden">
       {/* === HERO === */}
@@ -142,22 +171,6 @@ const Index = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Status badge */}
-            <motion.div
-              className="flex items-center gap-2 w-fit rounded-full border border-primary/30 bg-secondary px-4 py-1.5"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-              </span>
-              <span className="font-display text-xs tracking-widest uppercase text-primary">
-                Cybertron Network — Online
-              </span>
-            </motion.div>
-
             <h1 className="font-display text-5xl font-black leading-tight tracking-wider text-foreground lg:text-7xl">
               Launch Tokens.{" "}
               <motion.span
@@ -214,6 +227,26 @@ const Index = () => {
                 </div>
               ))}
             </motion.div>
+
+            {/* Join Community Banner */}
+            <motion.a
+              href="https://web.telegram.org/k/#-5199166513"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 rounded-2xl border-2 border-yellow-500/50 bg-yellow-500/10 p-4 hover:border-yellow-500/80 hover:bg-yellow-500/20 transition-all group cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-3xl group-hover:scale-110 transition-transform">🐝</span>
+                <div className="flex-1">
+                  <p className="font-display font-bold text-yellow-400 tracking-wider">📢 Join 100+ Autobots</p>
+                  <p className="text-sm text-yellow-400/70 font-body">Get live token updates & milestone alerts in Telegram</p>
+                </div>
+                <span className="font-display font-bold text-yellow-400 whitespace-nowrap">JOIN NOW →</span>
+              </div>
+            </motion.a>
           </motion.div>
 
           <motion.div
