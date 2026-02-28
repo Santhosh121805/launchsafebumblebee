@@ -177,7 +177,12 @@ if (!isConfigured()) {
             const tokenData = await axios.get(`${BACKEND_URL}/api/tokens`);
             const tokens = tokenData.data.tokens || [];
             const tokenSummary = tokens.length > 0 
-              ? `Current tokens: ${tokens.map(t => `${t.name}($${t.symbol}): ${t.bnbRaised}/${t.bnbToRaise || 10} BNB, ${t.holders} holders`).join("; ")}`
+              ? `Current tokens: ${tokens.map(t => {
+                  const goal = t.bnbToRaise || 10;
+                  const progress = (t.bnbRaised || 0) / goal * 100;
+                  const status = progress >= 100 ? "(SOLD OUT)" : "(ACTIVE)";
+                  return `${t.name}($${t.symbol}): ${t.bnbRaised}/${goal} BNB, ${t.holders} holders ${status}`;
+                }).join("; ")}`
               : "No tokens launched yet";
 
             const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -216,7 +221,10 @@ if (!isConfigured()) {
         
         if (tokenData.data.tokens && tokenData.data.tokens.length > 0) {
           const token = tokenData.data.tokens[0];
-          const update = `🚀 LaunchSafe Update! Bzzzt! ⚡\n\nToken: ${token.name} (${token.symbol})\n👥 Holders: ${token.holders}\n💰 BNB Raised: ${token.bnbRaised}\n🎯 Milestone: ${token.milestoneProgress}/${token.nextMilestone}`;
+          const goal = token.bnbToRaise || 10;
+          const progress = (token.bnbRaised || 0) / goal * 100;
+          const statusEmoji = progress >= 100 ? "🔴 SOLD OUT" : "🟢 ACTIVE";
+          const update = `🚀 LaunchSafe Update! Bzzzt! ⚡\n\nToken: ${token.name} (${token.symbol})\n👥 Holders: ${token.holders}\n💰 BNB Raised: ${token.bnbRaised}/${goal}\n${statusEmoji}\n🎯 Milestone: ${token.milestoneProgress}/${token.nextMilestone}`;
           
           await bot.telegram.sendMessage(process.env.TELEGRAM_GROUP_ID, update);
           console.log("📢 Bumblebee posted hourly update! Bzzzt! ⚡");

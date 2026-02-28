@@ -202,8 +202,8 @@ const ExploreTokens = () => {
                       👥 {token.holders || 0} holders
                     </span>
                     {progress >= 100 ? (
-                      <span className="rounded-full bg-yellow-900/30 px-3 py-1 font-display text-xs tracking-wider text-yellow-400 border border-yellow-500/30 font-semibold">
-                        GOAL REACHED! 🎉
+                      <span className="rounded-full bg-red-900/30 px-3 py-1 font-display text-xs tracking-wider text-red-400 border border-red-500/30 font-semibold">
+                        SOLD OUT
                       </span>
                     ) : (
                       <span className="rounded-full bg-emerald-900/30 px-3 py-1 font-display text-xs tracking-wider text-emerald-400 border border-emerald-500/30">
@@ -213,14 +213,25 @@ const ExploreTokens = () => {
                   </div>
 
                   <div className="mb-4 flex gap-2">
-                    <Button 
-                      variant="default" 
-                      size="lg" 
-                      className="flex-1"
-                      onClick={() => handleBuyClick(token)}
-                    >
-                      Buy Now
-                    </Button>
+                    {progress >= 100 ? (
+                      <Button 
+                        variant="default" 
+                        size="lg" 
+                        className="flex-1 opacity-50 cursor-not-allowed"
+                        disabled
+                      >
+                        SOLD OUT
+                      </Button>
+                    ) : (
+                      <Button 
+                        variant="default" 
+                        size="lg" 
+                        className="flex-1"
+                        onClick={() => handleBuyClick(token)}
+                      >
+                        Buy Now
+                      </Button>
+                    )}
                     <a
                       href="https://web.telegram.org/k/#-5199166513"
                       target="_blank"

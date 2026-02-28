@@ -178,9 +178,19 @@ const Dashboard = () => {
                         </p>
                       </div>
                     </div>
-                    <span className="rounded-full bg-emerald-900/30 px-3 py-1 font-display text-xs tracking-wider text-emerald-400 border border-emerald-500/30">
-                      LOCKED 🔒
-                    </span>
+                    {(() => {
+                      const goal = token.bnbToRaise || 10;
+                      const progress = (token.bnbRaised || 0) / goal * 100;
+                      return progress >= 100 ? (
+                        <span className="rounded-full bg-red-900/30 px-3 py-1 font-display text-xs tracking-wider text-red-400 border border-red-500/30 font-semibold">
+                          SOLD OUT
+                        </span>
+                      ) : (
+                        <span className="rounded-full bg-emerald-900/30 px-3 py-1 font-display text-xs tracking-wider text-emerald-400 border border-emerald-500/30">
+                          LOCKED 🔒
+                        </span>
+                      );
+                    })()}
                   </div>
 
                   <div className="space-y-3 text-sm">
