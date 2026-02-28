@@ -13,6 +13,8 @@ const LaunchToken = () => {
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [createdToken, setCreatedToken] = useState<any>(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [form, setForm] = useState({
     name: "",
     symbol: "",
@@ -162,6 +164,14 @@ const LaunchToken = () => {
 
             if (response.data && response.data.success) {
               const txHash = response.data.txHash || "";
+              const token = response.data.token || {};
+              
+              // Store created token data
+              setCreatedToken({
+                ...token,
+                logoUrl: logoPreview || token.logoUrl
+              });
+              setShowSuccessModal(true);
               
               // Reset form
               setForm({
@@ -449,6 +459,83 @@ const LaunchToken = () => {
           />
         </div>
       </div>
+
+      {/* Success Modal */}
+      {showSuccessModal && createdToken && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div className="relative w-full max-w-md rounded-2xl border-2 border-primary bg-black p-8 text-foreground shadow-2xl">
+            <button
+              onClick={() => setShowSuccessModal(false)}
+              className="absolute right-4 top-4 rounded-lg bg-primary/20 p-2 text-primary hover:bg-primary/40"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            <div className="text-center">
+              <div className="mb-6 flex justify-center">
+                <div className="text-5xl">🎉</div>
+              </div>
+              
+              <h2 className="font-display text-2xl font-bold text-foreground mb-2">
+                Token Launched!
+              </h2>
+              
+              <p className="text-sm text-muted-foreground mb-6">
+                Your token has been successfully created and secured
+              </p>
+
+              {/* Token Card */}
+              <div className="rounded-xl border border-border bg-muted/50 p-6 mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary overflow-hidden border-2 border-primary/40">
+                    {createdToken.logoUrl ? (
+                      <img 
+                        src={createdToken.logoUrl} 
+                        alt={createdToken.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-3xl">🐝</span>
+                    )}
+                  </div>
+                  <div className="text-left">
+                    <h3 className="font-display text-lg font-bold text-foreground">
+                      {createdToken.name}
+                    </h3>
+                    <p className="text-sm text-primary font-semibold">
+                      ${createdToken.symbol}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between text-muted-foreground">
+                    <span>Supply:</span>
+                    <span className="text-foreground font-semibold">
+                      {createdToken.totalSupply?.toLocaleString() || "N/A"}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-muted-foreground">
+                    <span>Goal:</span>
+                    <span className="text-foreground font-semibold">
+                      {createdToken.bnbToRaise || "N/A"} BNB
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <Button 
+                variant="hero" 
+                size="lg" 
+                className="w-full"
+                onClick={() => setShowSuccessModal(false)}
+              >
+                View on Dashboard →
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
