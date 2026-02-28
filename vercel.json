@@ -2,12 +2,6 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "env": {
-    "VITE_BACKEND_URL": "@backend_url",
-    "VITE_CONTRACT_ADDRESS": "@contract_address",
-    "VITE_VAULT_ADDRESS": "@vault_address",
-    "VITE_FACTORY_ADDRESS": "@factory_address"
-  },
   "headers": [
     {
       "source": "/api/(.*)",
