@@ -115,7 +115,7 @@ BLOCKCHAIN LAYER
 - Google Gemini API Key
 - BNB Smart Chain Testnet RPC
 
-- LIVE LINK - https://launchsafebumblebee-h6hrmknza-ssanthoshs418-gmailcoms-projects.vercel.app
+- LIVE LINK - https://launchsafebumblebee.vercel.app/
 
 <img width="1880" height="931" alt="Screenshot 2026-02-28 140007" src="https://github.com/user-attachments/assets/9dd86aa3-575f-4124-b9ee-606c1bf76183" />
 
