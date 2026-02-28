@@ -2,6 +2,8 @@
 SAFE.SECURE.UNSTOPPABLE [](file:///c%3A/Users/Santhosh%20S/Desktop/Santhosh-Tem/bumblebee-launchpad/README.md)
 <img width="1857" height="1239" alt="image" src="https://github.com/user-attachments/assets/1236c874-f4f5-422b-aa3e-49bfbae334d2" />
 
+## **SETUP GUIDE PLEASE READ THIS ** - https://drive.google.com/file/d/1W4ZzGqaxup7sLYocoEPJC_Hr1hqj16m4/view?usp=sharing
+
 ## **User Journey Diagram**
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -206,3 +208,5 @@ npx hardhat verify --network testnet <contract_address>
 - [ ] Environment variables all set
 - [ ] CORS enabled for frontend domain
 - [ ] MongoDB credentials secure in .env
+
+## **DEMO LINK ** - https://drive.google.com/file/d/1T8G1mltnCnQoIyjBHmvyL5O2CBssA3FV/view?usp=sharing
