@@ -1,3 +1,4 @@
+## **LAUNCHSAFE**
 SAFE.SECURE.UNSTOPPABLE [](file:///c%3A/Users/Santhosh%20S/Desktop/Santhosh-Tem/bumblebee-launchpad/README.md)
 <img width="1857" height="1239" alt="image" src="https://github.com/user-attachments/assets/1236c874-f4f5-422b-aa3e-49bfbae334d2" />
 
@@ -111,6 +112,8 @@ BLOCKCHAIN LAYER
 - Telegram Bot Token
 - Google Gemini API Key
 - BNB Smart Chain Testnet RPC
+
+- LIVE LINK - https://launchsafebumblebee-h6hrmknza-ssanthoshs418-gmailcoms-projects.vercel.app
 
 <img width="1880" height="931" alt="Screenshot 2026-02-28 140007" src="https://github.com/user-attachments/assets/9dd86aa3-575f-4124-b9ee-606c1bf76183" />
 
