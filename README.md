@@ -1,4 +1,4 @@
-Read [](file:///c%3A/Users/Santhosh%20S/Desktop/Santhosh-Tem/bumblebee-launchpad/README.md)
+LaunchSafe - SAFE.SECURE.UNSTOPPABLE [](file:///c%3A/Users/Santhosh%20S/Desktop/Santhosh-Tem/bumblebee-launchpad/README.md)
 <img width="1857" height="1239" alt="image" src="https://github.com/user-attachments/assets/1236c874-f4f5-422b-aa3e-49bfbae334d2" />
 
 ## **User Journey Diagram**
@@ -61,6 +61,8 @@ BLOCKCHAIN LAYER
 │  ├─ VaultContract
 │  └─ ethers.js Integration
 ```
+<img width="1857" height="1239" alt="image" src="https://github.com/user-attachments/assets/f1eec12c-a874-4a24-8b36-f71d92aeece2" />
+
 
 ## **Open-Source Dependencies**
 
