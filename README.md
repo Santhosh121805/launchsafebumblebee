@@ -1,4 +1,4 @@
-LaunchSafe - SAFE.SECURE.UNSTOPPABLE [](file:///c%3A/Users/Santhosh%20S/Desktop/Santhosh-Tem/bumblebee-launchpad/README.md)
+<img width="1880" height="931" alt="image" src="https://github.com/user-attachments/assets/a0f4884b-3939-4c53-9ab0-e87b2771076b" />LaunchSafe - SAFE.SECURE.UNSTOPPABLE [](file:///c%3A/Users/Santhosh%20S/Desktop/Santhosh-Tem/bumblebee-launchpad/README.md)
 <img width="1857" height="1239" alt="image" src="https://github.com/user-attachments/assets/1236c874-f4f5-422b-aa3e-49bfbae334d2" />
 
 ## **User Journey Diagram**
@@ -61,7 +61,8 @@ BLOCKCHAIN LAYER
 │  ├─ VaultContract
 │  └─ ethers.js Integration
 ```
-<img width="1857" height="1239" alt="image" src="https://github.com/user-attachments/assets/f1eec12c-a874-4a24-8b36-f71d92aeece2" />
+<img width="7439" height="4523" alt="Mermaid Chart - Create complex, visual diagrams with text -2026-02-28-080308" src="https://github.com/user-attachments/assets/1852f104-bd13-4a1b-8e24-c095732b2e3a" />
+
 
 
 ## **Open-Source Dependencies**
@@ -98,6 +99,8 @@ BLOCKCHAIN LAYER
 }
 ```
 
+
+
 ## **Deployment Instructions**
 
 ### Prerequisites
@@ -108,6 +111,9 @@ BLOCKCHAIN LAYER
 - Telegram Bot Token
 - Google Gemini API Key
 - BNB Smart Chain Testnet RPC
+
+<img width="1880" height="931" alt="Screenshot 2026-02-28 140007" src="https://github.com/user-attachments/assets/9dd86aa3-575f-4124-b9ee-606c1bf76183" />
+
 
 ### Step-by-Step Deployment
 
@@ -184,6 +190,8 @@ npx hardhat run scripts/deploy.js --network testnet
 # Verify on BSCscan
 npx hardhat verify --network testnet <contract_address>
 ```
+
+
 
 #### 7. **Verification Checklist**
 
