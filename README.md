@@ -1,73 +1,195 @@
-# Welcome to your Lovable project
+Read [](file:///c%3A/Users/Santhosh%20S/Desktop/Santhosh-Tem/bumblebee-launchpad/README.md)
+<img width="1857" height="1239" alt="image" src="https://github.com/user-attachments/assets/1236c874-f4f5-422b-aa3e-49bfbae334d2" />
 
-## Project info
+## **User Journey Diagram**
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    BUMBLEBEE LAUNCHPAD                      │
+│                    User Journey & Flow                       │
+└─────────────────────────────────────────────────────────────┘
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+1. TOKENOMICS EXPLORATION
+   User → ExploreTokens Page → View All Tokens → Analyze via Bumblebee Bot
 
-## How can I edit this code?
+2. TOKEN CREATION FLOW
+   User → LaunchToken Page → Fill Details → Deploy Smart Contract
 
-There are several ways of editing your application.
+3. TOKEN MANAGEMENT
+   Dashboard → View Holdings → Monitor Performance → Receive Alerts
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+4. BOT INTERACTION
+   Telegram User → /start → View Options → /analyze → Get AI Insights
+                                         → /tokens → View Holdings
+                                         → /alerts → Subscribe Updates
 ```
 
-**Edit a file directly in GitHub**
+## **Architecture Section**
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                   BUMBLEBEE PLATFORM ARCHITECTURE                │
+└──────────────────────────────────────────────────────────────────┘
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+CLIENT LAYER
+├─ Frontend (React + Vite + TypeScript)
+│  ├─ ExploreTokens Component
+│  ├─ LaunchToken Component
+│  ├─ Dashboard Component
+│  └─ Bumblebee Guide AI Chat
 
-**Use GitHub Codespaces**
+BACKEND LAYER
+├─ Node.js Express Server
+│  ├─ /api/tokens (GET, POST)
+│  ├─ /api/deploy (POST)
+│  ├─ /api/analyze (POST)
+│  └─ Health Check Routes
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+AI & BOT LAYER
+├─ Telegram Bot (Telegraf)
+│  ├─ Message Handler
+│  ├─ Command Handler
+│  └─ Gemini Integration
 
-## What technologies are used for this project?
+DATA LAYER
+├─ MongoDB Atlas
+│  ├─ Tokens Collection
+│  ├─ Users Collection
+│  └─ Transactions Collection
 
-This project is built with:
+BLOCKCHAIN LAYER
+├─ BNB Smart Chain Testnet
+│  ├─ TokenFactory Contract
+│  ├─ VaultContract
+│  └─ ethers.js Integration
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## **Open-Source Dependencies**
 
-## How can I deploy this project?
+### Frontend Dependencies
+```json
+{
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^5.2.0",
+    "typescript": "^5.2.2",
+    "tailwindcss": "^3.4.3",
+    "@radix-ui/react-dialog": "^1.1.1",
+    "ethers": "^6.10.0",
+    "recharts": "^2.10.3"
+  }
+}
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### Backend Dependencies
+```json
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "telegraf": "^4.16.0",
+    "@google/generative-ai": "^0.1.3",
+    "ethers": "^6.10.0",
+    "dotenv": "^16.3.1",
+    "node-cron": "^3.0.2",
+    "cors": "^2.8.5"
+  }
+}
+```
 
-## Can I connect a custom domain to my Lovable project?
+## **Deployment Instructions**
 
-Yes, you can!
+### Prerequisites
+- Node.js >= 18
+- npm or bun
+- Vercel Account
+- MongoDB Atlas Account
+- Telegram Bot Token
+- Google Gemini API Key
+- BNB Smart Chain Testnet RPC
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Step-by-Step Deployment
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+#### 1. **Environment Variables Setup**
+
+Create .env.local (Frontend):
+```env
+VITE_BACKEND_URL=https://your-backend-vercel-url
+VITE_CONTRACT_ADDRESS=0xa5D8F9Ad375314D539C72A955dFb5DCB2C82f365
+VITE_VAULT_ADDRESS=0x5B51Bd77152c2A4Da3574AC627f43Ec4B59eCAeD
+VITE_FACTORY_ADDRESS=0xa5D8F9Ad375314D539C72A955dFb5DCB2C82f365
+```
+
+Create .env (Backend):
+```env
+NODE_ENV=production
+PORT=3001
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/?appName=bumblebee
+TELEGRAM_BOT_TOKEN=your_telegram_token
+TELEGRAM_GROUP_ID=-your_group_id
+GEMINI_API_KEY=your_gemini_api_key
+CONTRACT_ADDRESS=0xa5D8F9Ad375314D539C72A955dFb5DCB2C82f365
+VAULT_ADDRESS=0x5B51Bd77152c2A4Da3574AC627f43Ec4B59eCAeD
+FACTORY_ADDRESS=0xa5D8F9Ad375314D539C72A955dFb5DCB2C82f365
+BACKEND_URL=https://your-backend-vercel-url
+```
+
+#### 2. **Frontend Deployment (Vercel)**
+
+```bash
+# Login to Vercel
+vercel login
+
+# Deploy frontend
+vercel deploy --prod
+
+# Set environment variables in Vercel dashboard
+```
+
+#### 3. **Backend Deployment (Vercel)**
+
+```bash
+cd backend
+vercel deploy --prod
+
+# Add environment variables in Vercel dashboard
+```
+
+#### 4. **Telegram Bot Deployment (Vercel)**
+
+```bash
+cd agent
+vercel deploy --prod
+
+# Configure webhook: https://your-bot-vercel-url/receive
+```
+
+#### 5. **Database Setup**
+
+```bash
+# MongoDB Atlas
+1. Create cluster: bumblebee
+2. Create database user
+3. Add connection string to .env
+4. Create indexes on tokens collection
+```
+
+#### 6. **Smart Contract Deployment**
+
+```bash
+# Deploy contracts to BNB Testnet
+npx hardhat run scripts/deploy.js --network testnet
+
+# Verify on BSCscan
+npx hardhat verify --network testnet <contract_address>
+```
+
+#### 7. **Verification Checklist**
+
+- [ ] Frontend loads at Vercel URL
+- [ ] Backend API responds at `/health`
+- [ ] Database connection successful
+- [ ] Telegram bot commands working
+- [ ] Smart contract functions callable
+- [ ] Environment variables all set
+- [ ] CORS enabled for frontend domain
+- [ ] MongoDB credentials secure in .env
